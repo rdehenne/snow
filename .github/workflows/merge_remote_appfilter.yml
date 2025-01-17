@@ -1,0 +1,45 @@
+name: Update appfilter from Arcticons
+
+on:
+  schedule:
+    - cron: '10 20 * * *'
+  push:
+    branches:
+      - "track-remote-appfilter"
+
+concurrency:
+  group: 'remote-appfilter'
+  cancel-in-progress: true
+
+jobs:
+  merge_remote_appfilter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+      - run: pip install -r .github/workflows/merge_remote_appfilter_requirements.txt
+
+      - name: Merge local and remote appfilter files
+        run: python .github/workflows/merge_remote_appfilter.py newicons/appfilter.xml https://raw.githubusercontent.com/Arcticons-Team/Arcticons/refs/heads/main/newicons/appfilter.xml
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: Add appfilter items from Arcticons
+          branch: merge-appfilter-arcticons
+          delete-branch: true
+          title: 'Add appfilter items from Arcticons'
+          body: |
+            New items can be imported from Arcticons' `appfilter.xml` [1].
+
+            [1]: https://github.com/Arcticons-Team/Arcticons/blob/main/newicons/appfilter.xml
+          assignees: rdehenne
+          reviewers: rdehenne
+          draft: false
+
