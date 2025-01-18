@@ -17,4 +17,11 @@ jobs:
     steps:
       - name: Track Remote Appfilter
         uses: rdehenne/track-remote-appfilter@v0.0.1-alpha7
+        with:
+          commit-message: Add appfilter items from Arcticons
+          title: 'Add appfilter items from Arcticons'
+          body: |
+            This PR adds new appfilter items from Arcticons that could be matched to existing drawables.
+
+            See Arcticons' [appfilter.xml](https://github.com/Arcticons-Team/Arcticons/blob/main/newicons/appfilter.xml) for more details.
 
