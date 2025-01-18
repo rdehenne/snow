@@ -16,5 +16,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Track Remote Appfilter
-        uses: rdehenne/track-remote-appfilter@v0.0.1-alpha2
+        uses: rdehenne/track-remote-appfilter@v0.0.1-alpha3
 
