@@ -16,9 +16,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Track Remote Appfilter
-        uses: rdehenne/track-remote-appfilter@v0.0.1-alpha7
+        uses: rdehenne/track-remote-appfilter@v0.0.1-alpha8
         with:
-          commit-message: Add appfilter items from Arcticons
+          local-appfilter: 'newicons/appfilter.xml'
+          remote-appfilter: 'https://raw.githubusercontent.com/Arcticons-Team/Arcticons/refs/heads/main/newicons/appfilter.xml'
+          commit-message: 'Add appfilter items from Arcticons'
           title: 'Add appfilter items from Arcticons'
           body: |
             This PR adds new appfilter items from Arcticons that could be matched to existing drawables.
